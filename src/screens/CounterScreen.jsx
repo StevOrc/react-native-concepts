@@ -1,26 +1,29 @@
-import React, { useState } from "react";
+import React, { UseReducer, useReducer } from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "change_increment":
+      return state.counter + action.payload < 0
+        ? state
+        : { ...state, counter: state.counter + action.payload };
+    case "change_decrement":
+      return state.counter + action.payload < 0
+        ? state
+        : { ...state, counter: state.counter + action.payload };
+    default:
+      return state;
+  }
+};
+
 const CounterScreen = () => {
-  const [counter, setCounter] = useState(0);
-  const [isNegative, setIsNegative] = useState(false);
-
-  const handleOnDecrease = () => {
-    if (counter - 1 < 0) {
-      setCounter(counter);
-      setIsNegative(true);
-    } else {
-      setCounter(counter - 1);
-      setIsNegative(false);
-    }
-  };
-
-  const handleOnIncrease = () => {
-    setCounter(counter + 1);
-    setIsNegative(false);
-  };
+  const [state, disptach] = useReducer(reducer, {
+    counter: 0,
+    isNegative: false,
+  });
 
   const renderErrorMessage = () => {
+    const { isNegative } = state;
     if (isNegative)
       return (
         <Text style={{ color: "red" }}> Counter can not be negative </Text>
@@ -29,10 +32,16 @@ const CounterScreen = () => {
 
   return (
     <View>
-      <Button title="Icrease" onPress={() => handleOnIncrease()}></Button>
-      <Button title="Decrease" onPress={() => handleOnDecrease()}></Button>
-      <Text>Counter Count {counter}</Text>
-      {renderErrorMessage()}
+      <Button
+        title="Icrease"
+        onPress={() => disptach({ type: "change_increment", payload: 1 })}
+      ></Button>
+      <Button
+        title="Decrease"
+        onPress={() => disptach({ type: "change_increment", payload: -1 })}
+      ></Button>
+      <Text>Counter Count {state.counter} </Text>
+      {/* {renderErrorMessage()} */}
     </View>
   );
 };

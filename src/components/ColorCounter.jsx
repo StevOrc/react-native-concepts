@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Button } from "react-native";
 const ColorCounter = ({ color, value, onIncrease, onDecrease }) => {
   return (
     <View>
-      <Text>
+      <Text style={styles.text}>
         {color} : {value}{" "}
       </Text>
       <Button onPress={() => onIncrease()} title={`Increase ${color}`}></Button>
@@ -13,6 +13,10 @@ const ColorCounter = ({ color, value, onIncrease, onDecrease }) => {
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  text: {
+    padding: 10,
+  },
+});
 
 export default ColorCounter;
