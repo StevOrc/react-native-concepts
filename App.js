@@ -10,6 +10,7 @@ import {
   SquareScreen,
   SquareScreenReducer,
   TextScreen,
+  BoxSreen
 } from "./src/screens";
 
 const navigator = createStackNavigator(
@@ -23,6 +24,7 @@ const navigator = createStackNavigator(
     Square: SquareScreen,
     SquareReducer: SquareScreenReducer,
     TextInput: TextScreen,
+    Box: BoxSreen 
   },
   {
     initialRouteName: "Home",
