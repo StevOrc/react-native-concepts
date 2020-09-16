@@ -20,7 +20,7 @@ const InputText = () => {
         onChangeText={(newValue) => handleOnChange(newValue)}
       />
       <Text>My name is : {name} </Text>
-      { name.length < 5 ? <Text>Password must at least 5 caracters</Text> : null}
+      { name.length < 5 ? <Text>Password must at least 5 caracters </Text> : null}
     </View>
   );
 };
